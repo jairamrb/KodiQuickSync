@@ -20,7 +20,6 @@
             <screenshot>resources/screenshot-01.jpg</screenshot>
             <screenshot>resources/screenshot-02.jpg</screenshot>
             <screenshot>resources/screenshot-03.jpg</screenshot>
-            <screenshot>resources/screenshot-04.jpg</screenshot>
         </assets>
         <news>Version 1.0.0
 - Manual video and music library scan
