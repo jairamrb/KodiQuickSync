@@ -67,8 +67,11 @@ This creates `dist/script.program.quicksync-<version>.zip`, ready to install in 
     ├── addon.py
     └── resources/
         ├── icon.png
+        ├── fanart.jpg
         ├── screenshot-01.jpg … screenshot-04.jpg
         ├── settings.xml
+        ├── lib/
+        │   └── quicksync.py
         └── language/
             ├── resource.language.en_gb/strings.po
             └── resource.language.es_es/strings.po
