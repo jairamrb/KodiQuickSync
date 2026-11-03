@@ -61,14 +61,17 @@ def run_scan(kind, monitor):
     log("Triggering UpdateLibrary(%s)" % kind)
     xbmc.executebuiltin("UpdateLibrary(%s)" % kind)
 
+    # waitForAbort() returns True as soon as Kodi asks add-ons to stop
     deadline = time.monotonic() + SCAN_START_TIMEOUT
-    while time.monotonic() < deadline and not monitor.abortRequested():
+    while time.monotonic() < deadline:
         if is_scanning(kind):
-            while is_scanning(kind) and not monitor.abortRequested():
-                time.sleep(POLL_INTERVAL)
+            while is_scanning(kind):
+                if monitor.waitForAbort(POLL_INTERVAL):
+                    return
             log("Scan of %s finished" % kind)
             return
-        time.sleep(0.25)
+        if monitor.waitForAbort(0.25):
+            return
 
     log("Kodi did not start the %s scan (nothing to update)" % kind)
 
@@ -109,6 +112,9 @@ def main():
     before = snapshot()
     for kind in kinds:
         run_scan(kind, monitor)
+        if monitor.abortRequested():
+            log("Kodi is shutting down, skipping the summary")
+            return
 
     after = snapshot()
     report, new_items = build_report(kinds, before, after)

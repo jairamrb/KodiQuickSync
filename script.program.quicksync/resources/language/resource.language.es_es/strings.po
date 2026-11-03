@@ -16,8 +16,8 @@ msgid "Scan your libraries for new content"
 msgstr "Busca contenido nuevo en tus bibliotecas"
 
 msgctxt "Addon Description"
-msgid "Triggers the video and/or music library scan, the same as Kodi's \"Update library on startup\" option. Only sources with a content type (scraper) set are scanned. When finished, a summary shows how many items were added.[CR][CR]Run it from Add-ons > Program add-ons, or add it to your favourites to launch it from the home screen."
-msgstr "Lanza el escaneo de la biblioteca de vídeo y/o música, igual que la opción \"Buscar nuevo contenido al iniciar\" de Kodi. Solo se escanean las fuentes que tienen un tipo de contenido (scraper) asignado. Al terminar muestra un resumen con lo que se ha añadido.[CR][CR]Ejecútalo desde Add-ons > Complementos de programa, o añádelo a tus favoritos para lanzarlo desde la pantalla de inicio."
+msgid "Triggers the video and/or music library scan, the same as Kodi's \"Update library on startup\" option. Only sources with a content type (scraper) set are scanned. When finished, a summary shows how many items were added.[CR][CR]Run it from Add-ons > Program add-ons, or add it to your favourites to launch it from the home screen.[CR][CR]Developed by jairamrb.com"
+msgstr "Lanza el escaneo de la biblioteca de vídeo y/o música, igual que la opción \"Buscar nuevo contenido al iniciar\" de Kodi. Solo se escanean las fuentes que tienen un tipo de contenido (scraper) asignado. Al terminar muestra un resumen con lo que se ha añadido.[CR][CR]Ejecútalo desde Add-ons > Complementos de programa, o añádelo a tus favoritos para lanzarlo desde la pantalla de inicio.[CR][CR]Desarrollado por jairamrb.com"
 
 msgctxt "#30010"
 msgid "Scan video library"
