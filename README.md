@@ -8,6 +8,7 @@ A Kodi add-on that triggers a library scan (video and/or music) on demand. It do
 
 It only scans sources that have a **content type** (scraper) set. Folders with no content type are skipped, the same as in Kodi's own scan. When the scan finishes, the add-on shows a summary of what was added to each library.
 
+- Website: <https://jairamrb.com/quicksync/>
 - Repository: <https://github.com/jairamrb/KodiQuickSync>
 - Add-on ID: `script.program.quicksync`
 - Requires Kodi 20 (Nexus) or later.
