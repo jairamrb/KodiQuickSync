@@ -23,6 +23,14 @@ It only scans sources that have a **content type** (scraper) set. Folders with n
 
 ## Installation
 
+### From the official Kodi repository (recommended)
+
+Kodi QuickSync is available in the official Kodi add-on repository, so updates arrive automatically.
+
+1. In Kodi, go to **Add-ons** and open the **Add-on browser** (box icon).
+2. Choose **Install from repository → Kodi Add-on repository → Program add-ons**.
+3. Select **Kodi QuickSync** and press **Install**.
+
 ### From a ZIP
 
 1. Build the ZIP with `python3 tools/build_zip.py` (or download it from the releases).
