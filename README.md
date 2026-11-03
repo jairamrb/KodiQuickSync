@@ -1,12 +1,16 @@
 # Kodi QuickSync
 
+<a href="https://jairamrb.com"><img src="docs/jairamrb-logo.png" alt="jairamrb.com" width="48" align="right"></a>
+
+Developed by [jairamrb.com](https://jairamrb.com).
+
 A Kodi add-on that triggers a library scan (video and/or music) on demand. It does the same thing as Kodi's **Update library on startup** option, but whenever you want.
 
 It only scans sources that have a **content type** (scraper) set. Folders with no content type are skipped, the same as in Kodi's own scan. When the scan finishes, the add-on shows a summary of what was added to each library.
 
 - Repository: <https://github.com/jairamrb/KodiQuickSync>
 - Add-on ID: `script.program.quicksync`
-- Requires Kodi 19 (Matrix) or later, Python 3.
+- Requires Kodi 20 (Nexus) or later.
 
 ## Features
 
@@ -59,6 +63,8 @@ This creates `dist/script.program.quicksync-<version>.zip`, ready to install in 
 .
 ├── LICENSE.txt
 ├── README.md
+├── docs/
+│   └── jairamrb-logo.png
 ├── tools/
 │   └── build_zip.py
 └── script.program.quicksync/
@@ -76,6 +82,10 @@ This creates `dist/script.program.quicksync-<version>.zip`, ready to install in 
             ├── resource.language.en_gb/strings.po
             └── resource.language.es_es/strings.po
 ```
+
+## Author
+
+Developed by [jairamrb.com](https://jairamrb.com).
 
 ## License
 
