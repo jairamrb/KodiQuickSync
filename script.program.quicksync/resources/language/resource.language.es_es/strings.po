@@ -1,10 +1,10 @@
 # Kodi Media Center language file
-# Addon Name: Kodi QuickSync
+# Addon Name: QuickSync
 # Addon id: script.program.quicksync
 # Addon Provider: airam
 msgid ""
 msgstr ""
-"Project-Id-Version: Kodi QuickSync 1.1.0\n"
+"Project-Id-Version: QuickSync 1.1.0\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"

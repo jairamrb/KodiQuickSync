@@ -1,4 +1,4 @@
-# Kodi QuickSync
+# QuickSync for Kodi
 
 <a href="https://jairamrb.com"><img src="docs/jairamrb-logo.png" alt="jairamrb.com" width="48" align="right"></a>
 
@@ -27,11 +27,11 @@ It only scans sources that have a **content type** (scraper) set. Folders with n
 
 ### From the official Kodi repository (recommended)
 
-Kodi QuickSync is available in the official Kodi add-on repository, so updates arrive automatically.
+QuickSync is available in the official Kodi add-on repository, so updates arrive automatically.
 
 1. In Kodi, go to **Add-ons** and open the **Add-on browser** (box icon).
 2. Choose **Install from repository → Kodi Add-on repository → Program add-ons**.
-3. Select **Kodi QuickSync** and press **Install**.
+3. Select **QuickSync** and press **Install**.
 
 ### From a ZIP
 
@@ -44,7 +44,7 @@ Copy the `script.program.quicksync/` folder into the `addons` folder of your Kod
 
 ## Usage
 
-- Go to **Add-ons → Program add-ons → Kodi QuickSync** and select it to run it.
+- Go to **Add-ons → Program add-ons → QuickSync** and select it to run it.
 - You can also add it to **Favourites** (context menu → *Add to favourites*) to launch it from the home screen in one click.
 - While the scan runs, Kodi shows its progress in the top-right corner and you can keep using Kodi.
 
