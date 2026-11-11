@@ -18,7 +18,9 @@ It only scans sources that have a **content type** (scraper) set. Folders with n
 - Manual scan of the video library, the music library, or both.
 - Uses Kodi's native scan (`UpdateLibrary`), so your scrapers, exclusions and settings apply.
 - Checks whether a scan is already running so two scans never start at once.
-- Final summary with the total size of each library and how many items are new.
+- Final summary with the total size of each library (movies, TV shows, episodes, music videos, artists, albums, songs) and how many items are new. A library that was not scanned says why. The summary window can close by itself after a countdown.
+- Launch options to skip the on-screen summary or pick the libraries, for other add-ons, scripts and remote controls.
+- Tells other add-ons and JSON-RPC clients when the scan starts and finishes, and what was added.
 - **English** and **Spanish** interface (it follows Kodi's language).
 
 ## Installation
@@ -48,11 +50,52 @@ Copy the `script.program.quicksync/` folder into the `addons` folder of your Kod
 
 ## Settings
 
+Kodi only has a video library and a music library. Pictures have no library, so for them the add-on walks the picture sources, counts the files with the extensions Kodi shows, and compares the total with the previous run (saved in the add-on data folder). The first run only takes the count.
+
 | Setting | Description | Default |
 |---|---|---|
 | Scan video library | Scans video sources that have a content type set | Yes |
-| Scan music library | Scans music sources that have a content type set | Yes |
+| Scan music library | Scans music sources that have a content type set | No |
+| Look for new pictures | Counts the files in the picture sources and shows how many are new | No |
 | Show summary when finished | Shows the summary in a dialog. When off, only a notification is shown | Yes |
+| Close the summary automatically | Closes the summary after a countdown shown in the window. Pressing up or down stops it | Yes |
+| Seconds before closing | Length of the countdown (5 to 120) | 15 |
+
+The *About* section has a **Look for new content now** button that runs the scan straight from the settings.
+
+## Launching it from other add-ons or remotely
+
+Options are passed as `key=value` and override the settings for that run:
+
+| Option | Values | Default |
+|---|---|---|
+| `report` | `dialog` (summary dialog), `notification` (a toast), `none` (nothing on screen) | From *Show summary when finished* |
+| `library` | `video`, `music`, `pictures`, `all` | From the *Libraries* settings |
+
+From a skin, a favourite, a keymap or another add-on:
+
+```
+RunScript(script.program.quicksync,report=none,library=video)
+```
+
+Through JSON-RPC (for example from a web page or a phone app):
+
+```json
+{"jsonrpc": "2.0", "id": 1, "method": "Addons.ExecuteAddon",
+ "params": {"addonid": "script.program.quicksync", "params": ["report=none", "library=video"]}}
+```
+
+If a scan is already running, a new launch does nothing (with `report=none`, not even a notification).
+
+### Notifications
+
+The add-on announces its progress with `JSONRPC.NotifyAll`, sent by `script.program.quicksync`. JSON-RPC clients receive `Other.OnScanStarted` and `Other.OnScanFinished`; service add-ons get them in `xbmc.Monitor.onNotification(sender, method, data)`.
+
+```json
+{"status": "done", "libraries": ["video"], "new": 3, "added": {"movies": 2, "tvshows": 0, "episodes": 1}}
+```
+
+`OnScanStarted` carries `{"libraries": [...]}`. When no library is selected, `OnScanFinished` carries `{"status": "nothing-selected"}`.
 
 ## Translations
 
@@ -85,6 +128,9 @@ This creates `dist/script.program.quicksync-<version>.zip`, ready to install in 
         ├── fanart.jpg
         ├── screenshot-01.jpg … screenshot-03.jpg
         ├── settings.xml
+        ├── skins/default/
+        │   ├── 1080i/script-quicksync-summary.xml
+        │   └── media/quicksync-white.png
         ├── lib/
         │   └── quicksync.py
         └── language/
