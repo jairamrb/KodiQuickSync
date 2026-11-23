@@ -6,7 +6,7 @@ Developed by [jairamrb.com](https://jairamrb.com).
 
 A Kodi add-on that triggers a library scan (video and/or music) on demand. It does the same thing as Kodi's **Update library on startup** option, but whenever you want.
 
-It only scans sources that have a **content type** (scraper) set. Folders with no content type are skipped, the same as in Kodi's own scan. When the scan finishes, the add-on shows a summary of what was added to each library.
+It only scans sources that have a **content type** (scraper) set. Folders with no content type are skipped, the same as in Kodi's own scan. After the scan it cleans the library, so what you deleted from disk disappears from Kodi too (this can be turned off). When it finishes, the add-on shows a summary of what was added to and removed from each library.
 
 - Website: <https://jairamrb.com/quicksync/>
 - Repository: <https://github.com/jairamrb/KodiQuickSync>
@@ -17,10 +17,11 @@ It only scans sources that have a **content type** (scraper) set. Folders with n
 
 - Manual scan of the video library, the music library, or both.
 - Uses Kodi's native scan (`UpdateLibrary`), so your scrapers, exclusions and settings apply.
+- Cleans the library after the scan (Kodi's native clean), so deleted movies, episodes or songs are removed. Sources that cannot be reached, such as a network share that is off, are left alone.
 - Checks whether a scan is already running so two scans never start at once.
-- Final summary with the total size of each library (movies, TV shows, episodes, music videos, artists, albums, songs) and how many items are new. A library that was not scanned says why. The summary window can close by itself after a countdown.
+- Final summary with the total size of each library (movies, TV shows, episodes, music videos, artists, albums, songs) how many items are new and how many were removed. A library that was not scanned says why. The summary window can close by itself after a countdown.
 - Launch options to skip the on-screen summary or pick the libraries, for other add-ons, scripts and remote controls.
-- Tells other add-ons and JSON-RPC clients when the scan starts and finishes, and what was added.
+- Tells other add-ons and JSON-RPC clients when the scan starts and finishes, and what was added and removed.
 - **English** and **Spanish** interface (it follows Kodi's language).
 
 ## Installation
@@ -57,6 +58,7 @@ Kodi only has a video library and a music library. Pictures have no library, so 
 | Scan video library | Scans video sources that have a content type set | Yes |
 | Scan music library | Scans music sources that have a content type set | No |
 | Look for new pictures | Counts the files in the picture sources and shows how many are new | No |
+| Remove from the library what is no longer available | Cleans the video and music libraries after the scan | Yes |
 | Show summary when finished | Shows the summary in a dialog. When off, only a notification is shown | Yes |
 | Close the summary automatically | Closes the summary after a countdown shown in the window. Pressing up or down stops it | Yes |
 | Seconds before closing | Length of the countdown (5 to 120) | 15 |
@@ -71,6 +73,7 @@ Options are passed as `key=value` and override the settings for that run:
 |---|---|---|
 | `report` | `dialog` (summary dialog), `notification` (a toast), `none` (nothing on screen) | From *Show summary when finished* |
 | `library` | `video`, `music`, `pictures`, `all` | From the *Libraries* settings |
+| `clean` | `true`, `false` | From *Remove from the library what is no longer available* |
 
 From a skin, a favourite, a keymap or another add-on:
 
@@ -92,7 +95,8 @@ If a scan is already running, a new launch does nothing (with `report=none`, not
 The add-on announces its progress with `JSONRPC.NotifyAll`, sent by `script.program.quicksync`. JSON-RPC clients receive `Other.OnScanStarted` and `Other.OnScanFinished`; service add-ons get them in `xbmc.Monitor.onNotification(sender, method, data)`.
 
 ```json
-{"status": "done", "libraries": ["video"], "new": 3, "added": {"movies": 2, "tvshows": 0, "episodes": 1}}
+{"status": "done", "libraries": ["video"], "new": 3, "added": {"movies": 2, "tvshows": 0, "episodes": 1},
+ "cleaned": true, "removed_total": 1, "removed": {"movies": 1, "tvshows": 0, "episodes": 0}}
 ```
 
 `OnScanStarted` carries `{"libraries": [...]}`. When no library is selected, `OnScanFinished` carries `{"status": "nothing-selected"}`.
